@@ -4,6 +4,8 @@
 -- │          that can be found in the LICENSE file.          │
 -- └                                                          ┘
 local config = {}
+local has_win32 = vim.fn.has('win32')
+local path_home = has_win32 and os.getenv("USERPROFILE") or os.getenv("HOME")
 
 --- zig-tools.nvim configuration
 ---@type table
@@ -86,10 +88,10 @@ _G.zigtools_config = {
 				enable = false,
 				--- Installation path
 				---@type string
-				install_path = os.getenv("HOME") .. "/.local/bin",
+				install_path = path_home .. "/.local/bin",
 				--- Source path (where to clone repository when building from source)
 				---@type string
-				source_path = os.getenv("HOME") .. "/.local/zig/zls",
+				source_path = path_home .. "/.local/zig/zls",
 			},
 		},
 	},
